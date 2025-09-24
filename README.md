@@ -18,57 +18,44 @@ It starts from installation and setup, and gradually covers basic concepts like 
     - [Integers](#integers)
     - [Unsigned Integers](#unsigned-integers)
     - [Floats](#floats)
-  - [Math Operations](#math-operations)
     - [Strings](#strings)
-      - [Examples](#examples)
     - [Booleans](#booleans)
-      - [Examples](#examples-1)
     - [Runes](#runes)
-      - [Examples](#examples-2)
-    - [Variable Assignment](#variable-assignment)
-      - [1. Declare with type and value](#1-declare-with-type-and-value)
-      - [2. Declare without type (type is inferred)](#2-declare-without-type-type-is-inferred)
-      - [3. Declare without value (zero value assigned)](#3-declare-without-value-zero-value-assigned)
-      - [4. Constants](#4-constants)
-      - [5. Shorthand declaration (`:=`) ⚡ *(later)*](#5-shorthand-declaration---later)
-      - [5. Multiple Assignment](#5-multiple-assignment)
-    - [Type Checking](#type-checking)
-      - [Examples](#examples-3)
-    - [If Statements](#if-statements)
-      - [Examples](#examples-4)
-    - [Logical Operators](#logical-operators)
-      - [Examples](#examples-5)
-    - [Loops (for)](#loops-for)
+  - [Math Operations](#math-operations)
+  - [Variable Assignment](#variable-assignment)
+    - [1. Declare with type and value](#1-declare-with-type-and-value)
+    - [2. Declare without type (type is inferred)](#2-declare-without-type-type-is-inferred)
+    - [3. Declare without value (zero value assigned)](#3-declare-without-value-zero-value-assigned)
+    - [4. Constants](#4-constants)
+    - [5. Shorthand declaration (`:=`) ⚡ *(later)*](#5-shorthand-declaration---later)
+    - [5. Multiple Assignment](#5-multiple-assignment)
+  - [Type Checking](#type-checking)
+  - [If Statements](#if-statements)
+  - [Logical Operators](#logical-operators)
+  - [Loops (for)](#loops-for)
       - [1. Classic for loop](#1-classic-for-loop)
-      - [2. While-style loop](#2-while-style-loop)
-      - [3. Infinite loop](#3-infinite-loop)
-      - [4. Range loop (iterating over arrays, slices, strings, maps)](#4-range-loop-iterating-over-arrays-slices-strings-maps)
-    - [Error Handling and Panic/Recover](#error-handling-and-panicrecover)
-      - [1. Handling errors with `error`](#1-handling-errors-with-error)
-      - [2. Panic and Recover](#2-panic-and-recover)
-    - [Switch Case](#switch-case)
-      - [Examples](#examples-6)
-    - [Functions](#functions)
-      - [Examples](#examples-7)
-    - [Arrays and Basic Operations](#arrays-and-basic-operations)
-      - [Examples](#examples-8)
-    - [Maps](#maps)
-      - [Examples](#examples-9)
-    - [In-place Operators](#in-place-operators)
-      - [Examples](#examples-10)
-    - [Structs and Interfaces](#structs-and-interfaces)
-      - [1. Structs](#1-structs)
-      - [2. Interfaces](#2-interfaces)
-    - [Pointers](#pointers)
-      - [Examples](#examples-11)
-    - [Goroutines](#goroutines)
-      - [Examples](#examples-12)
-    - [Go Package Management](#go-package-management)
-      - [1. Installing a Package](#1-installing-a-package)
+    - [2. While-style loop](#2-while-style-loop)
+    - [3. Infinite loop](#3-infinite-loop)
+    - [4. Range loop (iterating over arrays, slices, strings, maps)](#4-range-loop-iterating-over-arrays-slices-strings-maps)
+  - [Error Handling and Panic/Recover](#error-handling-and-panicrecover)
+    - [1. Handling errors with `error`](#1-handling-errors-with-error)
+    - [2. Panic and Recover](#2-panic-and-recover)
+  - [Switch Case](#switch-case)
+  - [Functions](#functions)
+  - [Arrays and Basic Operations](#arrays-and-basic-operations)
+  - [Maps](#maps)
+  - [In-place Operators](#in-place-operators)
+  - [Structs and Interfaces](#structs-and-interfaces)
+    - [1. Structs](#1-structs)
+    - [2. Interfaces](#2-interfaces)
+  - [Pointers](#pointers)
+  - [Goroutines](#goroutines)
+  - [Go Package Management](#go-package-management)
+    - [1. Installing a Package](#1-installing-a-package)
       - [2. Importing the Package](#2-importing-the-package)
-      - [3. Updating a Package](#3-updating-a-package)
-      - [4. Removing a Package](#4-removing-a-package)
-      - [5. Checking Modules](#5-checking-modules)
+    - [3. Updating a Package](#3-updating-a-package)
+    - [4. Removing a Package](#4-removing-a-package)
+    - [5. Checking Modules](#5-checking-modules)
 
 
 
@@ -152,26 +139,11 @@ func main() {
 * `float64` : \~ ±1.7e308
 
 
-
-## Math Operations
-
-| Operator        | Name             | Example          | Result | Notes                              |
-| --------------- | ---------------- | ---------------- | ------ | ---------------------------------- |
-| `+`             | Addition         | `10 + 5`         | `15`   | Works for integers & floats        |
-| `-`             | Subtraction      | `10 - 5`         | `5`    | Works for integers & floats        |
-| `*`             | Multiplication   | `10 * 5`         | `50`   | Works for integers & floats        |
-| `/` (int)       | Division (int)   | `7 / 2`          | `3`    | Drops decimals                     |
-| `/` (float)     | Division (float) | `7.0 / 2.0`      | `3.5`  | At least one operand must be float |
-| `%`             | Modulo           | `10 % 3`         | `1`    | Only for integers                  |
-| `math.Pow(a,b)` | Power            | `math.Pow(2, 3)` | `8.0`  | Returns `float64`                  |
-| `math.Sqrt(x)`  | Square Root      | `math.Sqrt(16)`  | `4.0`  | Returns `float64`                  |
-| `math.Abs(x)`   | Absolute Value   | `math.Abs(-5)`   | `5`    | Returns `float64`                  |
-
 ### Strings
 Strings in Go are sequences of characters enclosed in double quotes (`" "`).  
 You can concatenate strings with `+` and format them using `fmt.Sprintf`.
 
-#### Examples
+
 
 ```go
 package main
@@ -204,7 +176,7 @@ func main() {
 Booleans in Go represent truth values: `true` or `false`.  
 They are commonly used in conditions and logical expressions.
 
-#### Examples
+
 
 ```go
 package main
@@ -240,7 +212,7 @@ func main() {
 A rune in Go represents a Unicode code point (a character).  
 It is an alias for `int32` and allows you to work with individual characters in a string.
 
-#### Examples
+
 
 ```go
 package main
@@ -268,10 +240,25 @@ func main() {
 }
 ```
 
-### Variable Assignment
+## Math Operations
+
+| Operator        | Name             | Example          | Result | Notes                              |
+| --------------- | ---------------- | ---------------- | ------ | ---------------------------------- |
+| `+`             | Addition         | `10 + 5`         | `15`   | Works for integers & floats        |
+| `-`             | Subtraction      | `10 - 5`         | `5`    | Works for integers & floats        |
+| `*`             | Multiplication   | `10 * 5`         | `50`   | Works for integers & floats        |
+| `/` (int)       | Division (int)   | `7 / 2`          | `3`    | Drops decimals                     |
+| `/` (float)     | Division (float) | `7.0 / 2.0`      | `3.5`  | At least one operand must be float |
+| `%`             | Modulo           | `10 % 3`         | `1`    | Only for integers                  |
+| `math.Pow(a,b)` | Power            | `math.Pow(2, 3)` | `8.0`  | Returns `float64`                  |
+| `math.Sqrt(x)`  | Square Root      | `math.Sqrt(16)`  | `4.0`  | Returns `float64`                  |
+| `math.Abs(x)`   | Absolute Value   | `math.Abs(-5)`   | `5`    | Returns `float64`                  |
+
+
+## Variable Assignment
 Go provides multiple ways to declare and assign values to variables.
 
-#### 1. Declare with type and value
+### 1. Declare with type and value
 You explicitly specify the type:
 
 ```go
@@ -279,7 +266,7 @@ var age int = 30
 var name string = "Alice"
 ````
 
-#### 2. Declare without type (type is inferred)
+### 2. Declare without type (type is inferred)
 
 The compiler infers the type from the value:
 
@@ -289,7 +276,7 @@ var score = 100      // int
 var pi = 3.14        // float64 (default)
 ```
 
-#### 3. Declare without value (zero value assigned)
+### 3. Declare without value (zero value assigned)
 
 If no value is given, Go assigns a *zero value*:
 
@@ -299,7 +286,7 @@ var text string      // ""
 var flag bool        // false
 ```
 
-#### 4. Constants
+### 4. Constants
 
 Constants are declared with `const` and cannot be changed:
 
@@ -308,7 +295,7 @@ const Pi = 3.14159
 const Welcome = "Hello, Go"
 ```
 
-#### 5. Shorthand declaration (`:=`) ⚡ *(later)*
+### 5. Shorthand declaration (`:=`) ⚡ *(later)*
 
 Inside functions, you can use `:=` to declare and assign in one step.
 (Not needed for now, but useful to know.)
@@ -319,7 +306,7 @@ language := "Go"
 ```
 
 
-#### 5. Multiple Assignment
+### 5. Multiple Assignment
 
 Go allows assigning values to multiple variables in a single line.
 
@@ -344,11 +331,11 @@ func main() {
 ```
 
 
-### Type Checking
+## Type Checking
 Go is a statically typed language, so every variable has a type that is known at compile time.  
 You can check or print the type of a variable using the `fmt.Printf` function with the `%T` verb.
 
-#### Examples
+
 
 ```go
 package main
@@ -373,11 +360,11 @@ func main() {
 ```
 
 
-### If Statements
+## If Statements
 `if` statements are used to execute code based on a condition.  
 The condition must evaluate to a boolean (`true` or `false`).
 
-#### Examples
+
 
 ```go
 package main
@@ -412,7 +399,7 @@ func main() {
 }
 ```
 
-### Logical Operators
+## Logical Operators
 Logical operators are used with boolean values (`true` or `false`) to build complex conditions.
 
 | Operator | Name | Description |
@@ -421,7 +408,7 @@ Logical operators are used with boolean values (`true` or `false`) to build comp
 | `\|\|`   | OR   | True if at least one operand is true |
 | `!`      | NOT  | Inverts the boolean value |
 
-#### Examples
+
 
 ```go
 package main
@@ -447,7 +434,7 @@ func main() {
 }
 ```
 
-### Loops (for)
+## Loops (for)
 
 Go uses `for` loops for all iteration.  
 There is no `while` or `do-while`; `for` can mimic all loop types.
@@ -466,7 +453,7 @@ func main() {
 }
 ````
 
-#### 2. While-style loop
+### 2. While-style loop
 
 Use a `for` with only a condition:
 
@@ -484,7 +471,7 @@ func main() {
 }
 ```
 
-#### 3. Infinite loop
+### 3. Infinite loop
 
 Omit all components; useful with `break` or `return`:
 
@@ -505,7 +492,7 @@ func main() {
 }
 ```
 
-#### 4. Range loop (iterating over arrays, slices, strings, maps)
+### 4. Range loop (iterating over arrays, slices, strings, maps)
 
 ```go
 package main
@@ -525,12 +512,12 @@ func main() {
     }
 }
 ```
-### Error Handling and Panic/Recover
+## Error Handling and Panic/Recover
 
 Go handles errors using explicit `error` values rather than exceptions.  
 You can also handle unexpected runtime issues using `panic` and `recover`.
 
-#### 1. Handling errors with `error`
+### 1. Handling errors with `error`
 Many functions return an `error` as the last return value.  
 Always check the error before proceeding.
 
@@ -566,7 +553,7 @@ func main() {
 }
 ````
 
-#### 2. Panic and Recover
+### 2. Panic and Recover
 
 `panic` stops normal execution; `recover` can handle a panic in a deferred function.
 
@@ -598,11 +585,11 @@ func main() {
 
 ```
 
-### Switch Case
+## Switch Case
 The `switch` statement allows you to execute code based on multiple possible values of a variable.  
 It is often cleaner than multiple `if-else-if` statements.
 
-#### Examples
+
 
 ```go
 package main
@@ -649,11 +636,11 @@ func main() {
 }
 ```
 
-### Functions
+## Functions
 Functions in Go are blocks of code that perform a specific task.  
 They can accept parameters and return values.
 
-#### Examples
+
 
 ```go
 package main
@@ -691,11 +678,11 @@ func swap(x int, y int) (int, int) {
 }
 ```
 
-### Arrays and Basic Operations
+## Arrays and Basic Operations
 Arrays in Go are fixed-size collections of elements of the same type.  
 For dynamic operations like add/remove, slices are used.
 
-#### Examples
+
 
 ```go
 package main
@@ -741,11 +728,11 @@ func main() {
 ```
 
 
-### Maps
+## Maps
 Maps in Go are collections of key-value pairs.  
 Keys are unique, and values are accessed using the key.
 
-#### Examples
+
 
 ```go
 package main
@@ -785,11 +772,11 @@ func main() {
 ```
 
 
-### In-place Operators
+## In-place Operators
 Go supports operators that modify the value of a variable directly.  
 Common ones include `++`, `--`, `+=`, `-=`, `*=`, `/=`, and `%=`.
 
-#### Examples
+
 
 ```go
 package main
@@ -821,9 +808,9 @@ func main() {
 ```
 
 
-### Structs and Interfaces
+## Structs and Interfaces
 
-#### 1. Structs
+### 1. Structs
 Structs are custom data types that group together fields (variables) under one name.
 
 ```go
@@ -851,7 +838,7 @@ func main() {
 }
 ````
 
-#### 2. Interfaces
+### 2. Interfaces
 
 Interfaces define a set of methods. Any type that implements these methods satisfies the interface.
 
@@ -881,11 +868,11 @@ func main() {
 }
 ```
 
-### Pointers
+## Pointers
 Pointers store the memory address of a variable.  
 You can access or modify the value using the pointer.
 
-#### Examples
+
 
 ```go
 package main
@@ -916,11 +903,11 @@ func main() {
 ```
 
 
-### Goroutines
+## Goroutines
 Goroutines are lightweight threads in Go that allow concurrent execution.  
 Use the `go` keyword before a function call to run it as a goroutine.
 
-#### Examples
+
 
 ```go
 package main
@@ -948,10 +935,10 @@ func main() {
 ```
 
 
-### Go Package Management
+## Go Package Management
 Go uses modules to manage external packages. You can install, update, and remove packages easily using `go` commands.
 
-#### 1. Installing a Package
+### 1. Installing a Package
 Use `go get` to download and install a package:
 
 ```bash
@@ -977,7 +964,7 @@ func main() {
 }
 ```
 
-#### 3. Updating a Package
+### 3. Updating a Package
 
 Update to the latest version with:
 
@@ -985,7 +972,7 @@ Update to the latest version with:
 go get -u github.com/user/package
 ```
 
-#### 4. Removing a Package
+### 4. Removing a Package
 
 Remove unused packages and tidy up `go.mod` and `go.sum`:
 
@@ -993,7 +980,7 @@ Remove unused packages and tidy up `go.mod` and `go.sum`:
 go mod tidy
 ```
 
-#### 5. Checking Modules
+### 5. Checking Modules
 
 List all modules and versions used in the project:
 
