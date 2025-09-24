@@ -52,7 +52,7 @@ It starts from installation and setup, and gradually covers basic concepts like 
   - [Goroutines](#goroutines)
   - [Go Package Management](#go-package-management)
     - [1. Installing a Package](#1-installing-a-package)
-      - [2. Importing the Package](#2-importing-the-package)
+    - [2. Importing the Package](#2-importing-the-package)
     - [3. Updating a Package](#3-updating-a-package)
     - [4. Removing a Package](#4-removing-a-package)
     - [5. Checking Modules](#5-checking-modules)
@@ -947,7 +947,7 @@ go get github.com/user/package
 
 This adds the package to your `go.mod` file.
 
-#### 2. Importing the Package
+### 2. Importing the Package
 
 After installing, import it in your code:
 
