@@ -27,7 +27,7 @@ It starts from installation and setup, and gradually covers basic concepts like 
     - [2. Declare without type (type is inferred)](#2-declare-without-type-type-is-inferred)
     - [3. Declare without value (zero value assigned)](#3-declare-without-value-zero-value-assigned)
     - [4. Constants](#4-constants)
-    - [5. Shorthand declaration (`:=`) ⚡ *(later)*](#5-shorthand-declaration---later)
+    - [5. Shorthand declaration](#5-shorthand-declaration)
     - [5. Multiple Assignment](#5-multiple-assignment)
   - [Type Checking](#type-checking)
   - [If Statements](#if-statements)
@@ -50,12 +50,29 @@ It starts from installation and setup, and gradually covers basic concepts like 
     - [2. Interfaces](#2-interfaces)
   - [Pointers](#pointers)
   - [Goroutines](#goroutines)
-  - [Go Package Management](#go-package-management)
-    - [1. Installing a Package](#1-installing-a-package)
-    - [2. Importing the Package](#2-importing-the-package)
-    - [3. Updating a Package](#3-updating-a-package)
-    - [4. Removing a Package](#4-removing-a-package)
-    - [5. Checking Modules](#5-checking-modules)
+- [Go Module \& Package Management](#go-module--package-management)
+  - [Initialize a new module for your project.](#initialize-a-new-module-for-your-project)
+  - [Ensure module files are clean and consistent.](#ensure-module-files-are-clean-and-consistent)
+  - [Get or install a dependency.](#get-or-install-a-dependency)
+  - [Install a specific version of a dependency.](#install-a-specific-version-of-a-dependency)
+  - [Update a dependency to its latest version.](#update-a-dependency-to-its-latest-version)
+  - [Update all dependencies in the project.](#update-all-dependencies-in-the-project)
+  - [Downgrade a dependency.](#downgrade-a-dependency)
+  - [Import a package into your code.](#import-a-package-into-your-code)
+  - [List all modules used by the project.](#list-all-modules-used-by-the-project)
+  - [Show available versions for a module.](#show-available-versions-for-a-module)
+  - [Display the dependency graph.](#display-the-dependency-graph)
+  - [Replace a module with a local version.](#replace-a-module-with-a-local-version)
+  - [Remove a replace directive.](#remove-a-replace-directive)
+  - [Vendor all dependencies locally.](#vendor-all-dependencies-locally)
+  - [Build using the vendor directory.](#build-using-the-vendor-directory)
+  - [Verify dependency integrity.](#verify-dependency-integrity)
+  - [Clean the Go build cache.](#clean-the-go-build-cache)
+  - [Clean the Go test cache.](#clean-the-go-test-cache)
+  - [Clean all downloaded modules.](#clean-all-downloaded-modules)
+  - [Download all dependencies explicitly.](#download-all-dependencies-explicitly)
+  - [Download a specific module.](#download-a-specific-module)
+  - [Show why a module is required.](#show-why-a-module-is-required)
 
 
 
@@ -137,6 +154,9 @@ func main() {
 
 * `float32` : \~ ±3.4e38
 * `float64` : \~ ±1.7e308
+
+references:
+- https://pkg.go.dev/builtin#int8
 
 
 ### Strings
@@ -295,7 +315,7 @@ const Pi = 3.14159
 const Welcome = "Hello, Go"
 ```
 
-### 5. Shorthand declaration (`:=`) ⚡ *(later)*
+### 5. Shorthand declaration 
 
 Inside functions, you can use `:=` to declare and assign in one step.
 (Not needed for now, but useful to know.)
@@ -935,63 +955,185 @@ func main() {
 ```
 
 
-## Go Package Management
-Go uses modules to manage external packages. You can install, update, and remove packages easily using `go` commands.
+# Go Module & Package Management 
 
-### 1. Installing a Package
-Use `go get` to download and install a package:
-
+## Initialize a new module for your project.
+**Use case:** Start a new Go project with module support.  
 ```bash
-go get github.com/user/package
+go mod init github.com/youruser/yourproject
 ````
 
-This adds the package to your `go.mod` file.
+## Ensure module files are clean and consistent.
 
-### 2. Importing the Package
-
-After installing, import it in your code:
-
-```go
-package main
-
-import (
-    "fmt"
-    "github.com/user/package" // example package
-)
-
-func main() {
-    fmt.Println("Using external package")
-}
-```
-
-### 3. Updating a Package
-
-Update to the latest version with:
-
-```bash
-go get -u github.com/user/package
-```
-
-### 4. Removing a Package
-
-Remove unused packages and tidy up `go.mod` and `go.sum`:
+**Use case:** Remove unused dependencies and fix `go.mod`.
 
 ```bash
 go mod tidy
 ```
 
-### 5. Checking Modules
+## Get or install a dependency.
 
-List all modules and versions used in the project:
+**Use case:** Add a package to your project.
+
+```bash
+go get github.com/user/package
+```
+
+**Use case:** Add a package to your global environment.
+
+```bash
+go install github.com/user/package
+```
+
+## Install a specific version of a dependency.
+
+**Use case:** Use an exact version of a package.
+
+```bash
+go get github.com/user/package@v1.2.3
+```
+
+## Update a dependency to its latest version.
+
+**Use case:** Get the newest minor/patch release.
+
+```bash
+go get -u github.com/user/package
+```
+
+## Update all dependencies in the project.
+
+**Use case:** Refresh every module to the latest compatible version.
+
+```bash
+go get -u ./...
+```
+
+## Downgrade a dependency.
+
+**Use case:** Revert a package to a stable or older version.
+
+```bash
+go get github.com/user/package@v1.0.0
+```
+
+## Import a package into your code.
+
+**Use case:** Use the installed dependency in your program.
+
+```go
+import "github.com/user/package"
+```
+
+## List all modules used by the project.
+
+**Use case:** View all dependencies in the module graph.
 
 ```bash
 go list -m all
 ```
 
-Notes:
+## Show available versions for a module.
 
-* `go.mod` tracks all dependencies.
-* `go.sum` ensures package integrity.
-* `go get` automatically downloads packages if not already installed.
-* Always run `go mod tidy` to clean unused dependencies.
+**Use case:** Check what versions you can upgrade or downgrade to.
+
+```bash
+go list -m -versions github.com/user/package
+```
+
+## Display the dependency graph.
+
+**Use case:** Understand module relationships.
+
+```bash
+go mod graph
+```
+
+## Replace a module with a local version.
+
+**Use case:** Develop or test a package locally without pushing it.
+
+```bash
+go mod edit -replace=github.com/user/package=../local-package
+```
+
+## Remove a replace directive.
+
+**Use case:** Restore the dependency to use the remote version.
+
+```bash
+go mod edit -dropreplace=github.com/user/package
+```
+
+## Vendor all dependencies locally.
+
+**Use case:** Bundle dependencies for builds without internet.
+
+```bash
+go mod vendor
+```
+
+## Build using the vendor directory.
+
+**Use case:** Force Go to use vendored dependencies.
+
+```bash
+go build -mod=vendor
+```
+
+## Verify dependency integrity.
+
+**Use case:** Ensure modules match expected checksums.
+
+```bash
+go mod verify
+```
+
+## Clean the Go build cache.
+
+**Use case:** Fix corrupted builds or free disk space.
+
+```bash
+go clean -cache
+```
+
+## Clean the Go test cache.
+
+**Use case:** Rerun tests without cached results.
+
+```bash
+go clean -testcache
+```
+
+## Clean all downloaded modules.
+
+**Use case:** Reset the module cache completely.
+
+```bash
+go clean -modcache
+```
+
+## Download all dependencies explicitly.
+
+**Use case:** Preload modules for offline builds.
+
+```bash
+go mod download
+```
+
+## Download a specific module.
+
+**Use case:** Fetch one module manually.
+
+```bash
+go mod download github.com/user/package
+```
+
+## Show why a module is required.
+
+**Use case:** Identify what depends on a specific module.
+
+```bash
+go mod why github.com/user/package
+```
 
